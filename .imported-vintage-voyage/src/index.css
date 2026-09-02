@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Antique Club Marketplace — luxury gold/black/beige design system */
+
+@layer base {
+  :root {
+    /* Beige parchment background */
+    --background: 40 38% 95%;
+    --foreground: 30 25% 12%;
+
+    --card: 38 45% 97%;
+    --card-foreground: 30 25% 12%;
+
+    --popover: 38 45% 98%;
+    --popover-foreground: 30 25% 12%;
+
+    /* Deep antique black */
+    --primary: 30 20% 10%;
+    --primary-foreground: 42 60% 92%;
+
+    /* Warm beige */
+    --secondary: 38 30% 88%;
+    --secondary-foreground: 30 25% 15%;
+
+    --muted: 38 25% 90%;
+    --muted-foreground: 30 15% 38%;
+
+    /* Antique gold accent */
+    --accent: 42 65% 52%;
+    --accent-foreground: 30 30% 12%;
+
+    --destructive: 0 65% 42%;
+    --destructive-foreground: 42 60% 95%;
+
+    --border: 38 25% 80%;
+    --input: 38 25% 85%;
+    --ring: 42 65% 52%;
+
+    /* Brand-specific tokens */
+    --gold: 42 70% 52%;
+    --gold-light: 45 80% 68%;
+    --gold-dark: 38 65% 38%;
+    --ink: 30 25% 10%;
+    --parchment: 40 45% 94%;
+    --parchment-deep: 38 35% 88%;
+    --burgundy: 350 45% 28%;
+
+    --gradient-gold: linear-gradient(135deg, hsl(45 80% 65%) 0%, hsl(42 70% 50%) 50%, hsl(38 65% 38%) 100%);
+    --gradient-parchment: linear-gradient(180deg, hsl(40 45% 96%) 0%, hsl(38 35% 90%) 100%);
+    --gradient-noir: linear-gradient(135deg, hsl(30 25% 12%) 0%, hsl(30 20% 8%) 100%);
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsl(30 25% 8% / 0.85) 100%);
+
+    --shadow-gold: 0 8px 32px -8px hsl(42 70% 45% / 0.35);
+    --shadow-deep: 0 20px 60px -20px hsl(30 25% 8% / 0.45);
+    --shadow-soft: 0 4px 16px -4px hsl(30 25% 12% / 0.12);
+    --shadow-frame: 0 0 0 1px hsl(42 65% 52% / 0.4), 0 12px 40px -12px hsl(30 25% 12% / 0.3);
+
+    --radius: 0.25rem;
+  }
+
+  .dark {
+    --background: 30 18% 8%;
+    --foreground: 42 50% 92%;
+    --card: 30 20% 11%;
+    --card-foreground: 42 50% 92%;
+    --popover: 30 20% 11%;
+    --popover-foreground: 42 50% 92%;
+    --primary: 42 65% 55%;
+    --primary-foreground: 30 25% 8%;
+    --secondary: 30 15% 16%;
+    --secondary-foreground: 42 50% 92%;
+    --muted: 30 12% 18%;
+    --muted-foreground: 38 20% 65%;
+    --accent: 42 70% 55%;
+    --accent-foreground: 30 25% 8%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 42 50% 95%;
+    --border: 30 15% 22%;
+    --input: 30 15% 20%;
+    --ring: 42 70% 55%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    background-image:
+      radial-gradient(circle at 10% 0%, hsl(42 65% 52% / 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 90% 100%, hsl(42 65% 52% / 0.05) 0%, transparent 40%);
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.005em;
+  }
+  .font-serif-cap {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+}
+
+@layer components {
+  .gold-text {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .gold-border {
+    border: 1px solid hsl(var(--gold) / 0.5);
+  }
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.6), transparent);
+  }
+  .frame-card {
+    @apply relative bg-card border border-border/60 transition-all duration-500;
+    box-shadow: var(--shadow-soft);
+  }
+  .frame-card:hover {
+    box-shadow: var(--shadow-frame);
+    transform: translateY(-4px);
+  }
+  .ornament::before, .ornament::after {
+    content: '❦';
+    @apply mx-3 text-[hsl(var(--gold))] opacity-70;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-gold { background: var(--gradient-gold); }
+  .bg-gradient-noir { background: var(--gradient-noir); }
+  .bg-gradient-parchment { background: var(--gradient-parchment); }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .shadow-deep { box-shadow: var(--shadow-deep); }
+  .text-gold { color: hsl(var(--gold)); }
+  .bg-ink { background: hsl(var(--ink)); }
+  .text-ink { color: hsl(var(--ink)); }
+  .animate-fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out both;
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.3), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2.4s linear infinite;
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
