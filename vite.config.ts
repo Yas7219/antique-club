@@ -27,6 +27,9 @@ export default defineConfig(({ mode }) => ({
     "process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY": JSON.stringify(
       process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.SUPABASE_PUBLISHABLE_KEY,
     ),
+    "process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL": JSON.stringify(
+      process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL,
+    ),
   },
   resolve: {
     alias: {
