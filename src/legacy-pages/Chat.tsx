@@ -170,9 +170,11 @@ const Chat = () => {
       ? `config.defaultLanguage=${encodeURIComponent(callLanguage)}&config.startAudioOnly=true&config.startWithVideoMuted=true`
       : `config.defaultLanguage=${encodeURIComponent(callLanguage)}&config.startWithVideoMuted=false`;
     const userName = encodeURIComponent(user?.user_metadata?.display_name || user?.email?.split("@")[0] || "Collector");
-    // Pass the language both ways: `lang` is read before Jitsi loads its UI,
-    // while the config fragment keeps the setting for the call room itself.
-    setCallUrl(`https://meet.jit.si/${room}?lang=${encodeURIComponent(callLanguage)}&userInfo.displayName=${userName}#${mode}`);
+    // Open Jitsi as the top-level page. Some browsers refuse camera/microphone
+    // permissions for a third-party WebRTC iframe, which causes "WebRTC not
+    // enabled" even when the browser supports calls.
+    const jitsiUrl = `https://meet.jit.si/${room}?lang=${encodeURIComponent(callLanguage)}&userInfo.displayName=${userName}#${mode}`;
+    window.location.assign(jitsiUrl);
   };
 
   const callIframeUrl = useMemo(() => callUrl, [callUrl]);
